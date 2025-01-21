@@ -1,9 +1,13 @@
 package com.six.entity;
 
+import org.apache.log4j.Logger;
+
 import com.six.constant.RocketStatus;
 
 public class Rocket implements Comparable<Rocket> {
 
+	static Logger log = Logger.getLogger(Rocket.class.getName());
+	
 	private String name;
 	private RocketStatus status;
 	private Mission mission;
@@ -44,6 +48,7 @@ public class Rocket implements Comparable<Rocket> {
 		boolean assignOperation = true;
 		if (endMission) {
 			assignOperation = false;
+			log.warn("Rocket mission is already ended.");
 		} else {
 			if (!isAssigned()) {
 				this.mission = mission;

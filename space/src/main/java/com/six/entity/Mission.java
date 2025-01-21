@@ -3,12 +3,16 @@ package com.six.entity;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.apache.log4j.Logger;
+
 import com.six.constant.MissionStatus;
 import com.six.constant.RocketStatus;
 import com.six.constant.StringConstants;
 
 public class Mission implements Comparable<Mission> {
 
+	static Logger log = Logger.getLogger(Mission.class.getName()); 
+	
 	private String name;
 	private MissionStatus status;
 	private Set<Rocket> rockets;
