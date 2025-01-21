@@ -2,7 +2,7 @@ package com.six.entity;
 
 import com.six.constant.RocketStatus;
 
-public class Rocket {
+public class Rocket implements Comparable<Rocket>{
 
 	private String name;
 	private RocketStatus status;
@@ -30,6 +30,11 @@ public class Rocket {
 			isAssigned = false;
 		}
 		return isAssigned;
+	}
+
+	public int compareTo(Rocket other) {
+		// TODO Auto-generated method stub
+		return this.name.compareTo(other.name);
 	}
 
 }
