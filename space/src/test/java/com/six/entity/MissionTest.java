@@ -39,7 +39,14 @@ public class MissionTest {
 		Mission m2 = new Mission("Moon");
 		int compRes = m1.compareTo(m2);
 
-		assertEquals(compRes < 0, true);
+		assertEquals("When rocket size is same in both mission ", true,compRes > 0);
+		
+		Rocket r1 = new Rocket("PSLV");
+		m2.addRocket(r1);
+		compRes = m1.compareTo(m2);
+		assertEquals("When rocket size is not same in both mission ", true,compRes > 0);
+		
+		
 	}
 
 	@Test

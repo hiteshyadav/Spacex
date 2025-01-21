@@ -28,7 +28,16 @@ public class Mission implements Comparable<Mission> {
 	}
 
 	public int compareTo(Mission o) {
-		return this.name.compareTo(o.name);
+		if(this.getRocketSize()==o.getRocketSize()) {
+			return o.name.compareTo(this.name);
+		}else {
+			if(o.getRocketSize() > this.getRocketSize()) {
+				return 1;
+			}else {
+				return -1;
+			}
+		}
+
 	}
 
 	public void addRocket(Rocket r1) {
