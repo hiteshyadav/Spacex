@@ -11,20 +11,20 @@ public class MissionTest {
 	@Test
 	public void testMissionStatus() {
 		Mission m1 = new Mission("OG");
-		assertEquals(MissionStatus.Scheduled, m1.getStatus());
+		assertEquals("When mission started its status should be : ",MissionStatus.Scheduled, m1.getStatus());
 
 		Rocket r1 = new Rocket("PSLV");
 		m1.addRocket(r1);
 		MissionStatus status = m1.getStatus();
-		assertEquals(status, MissionStatus.InProgress);
+		assertEquals( "When rocket is assigned to mission its status should be: ",MissionStatus.InProgress,status);
 
 		r1.setInRepair(true);
 		status = m1.getStatus();
-		assertEquals(status, MissionStatus.Pending);
+		assertEquals("When rocket goes in repair mode mission status should be change to : ", MissionStatus.Pending,status);
 
 		r1.setInRepair(false);
 		status = m1.getStatus();
-		assertEquals(status, MissionStatus.InProgress);
+		assertEquals("When rocket gets repaired, mission status should be change to : ", MissionStatus.InProgress,status);
 
 	}
 

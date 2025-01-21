@@ -6,13 +6,15 @@ public class Rocket implements Comparable<Rocket> {
 
 	private String name;
 	private RocketStatus status;
-	Mission mission;
-	boolean inRepair;
+	private Mission mission;
+	private boolean inRepair;
+	private boolean endMission;
 
 	public Rocket(String name) {
 		this.name = name;
 		status = RocketStatus.OnGroud;
 		mission = null;
+		endMission = false;
 	}
 
 	public boolean isInRepair() {
@@ -21,24 +23,33 @@ public class Rocket implements Comparable<Rocket> {
 
 	public void setInRepair(boolean inRepair) {
 		this.inRepair = inRepair;
-		updateRocketStatus(this.inRepair);
+		updateRocketStatus();
 	}
 
 	public RocketStatus getStatus() {
 		return status;
 	}
 
+	public void endMission() {
+		mission = null;
+		endMission = true;
+//		updateRocketStatus();
+	}
+
 	public boolean assignMission(Mission mission) {
 		boolean assignOperation = true;
-		if (!isAssigned()) {
-			this.mission = mission;
-
-		} else {
+		if (endMission) {
 			assignOperation = false;
+		} else {
+			if (!isAssigned()) {
+				this.mission = mission;
+
+			} else {
+				assignOperation = false;
+			}
 		}
 
-		updateRocketStatus(this.inRepair);
-
+		updateRocketStatus();
 		return assignOperation;
 	}
 
@@ -51,11 +62,10 @@ public class Rocket implements Comparable<Rocket> {
 	}
 
 	public int compareTo(Rocket other) {
-		// TODO Auto-generated method stub
 		return this.name.compareTo(other.name);
 	}
 
-	public void updateRocketStatus(boolean inRepair) {
+	public void updateRocketStatus() {
 		if (isAssigned()) {
 			if (inRepair) {
 				status = RocketStatus.InRepair;
@@ -63,6 +73,8 @@ public class Rocket implements Comparable<Rocket> {
 				status = RocketStatus.InSpace;
 			}
 			this.mission.updateStatus();
+		} else {
+			status = RocketStatus.OnGroud;
 		}
 	}
 }

@@ -10,7 +10,7 @@ public class Mission implements Comparable<Mission> {
 
 	private String name;
 	private MissionStatus status;
-	Set<Rocket> rockets;
+	private Set<Rocket> rockets;
 
 	public Mission(String name) {
 		this.name = name;
@@ -23,7 +23,6 @@ public class Mission implements Comparable<Mission> {
 	}
 
 	public int compareTo(Mission o) {
-		// TODO Auto-generated method stub
 		return this.name.compareTo(o.name);
 	}
 
@@ -38,8 +37,13 @@ public class Mission implements Comparable<Mission> {
 		return rockets.size();
 	}
 
-	
-	 void updateStatus() {
+	public void endMission() {
+		for(Rocket r1:rockets) {
+			r1.endMission();
+		}
+		rockets=new TreeSet<Rocket>();
+	}
+	void updateStatus() {
 		if (rockets.size() == 0) {
 			status = MissionStatus.Scheduled;
 		} else if (rockets.size() >= 1) {
