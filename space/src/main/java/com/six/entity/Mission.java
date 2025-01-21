@@ -5,7 +5,7 @@ import java.util.TreeSet;
 
 import com.six.constant.MissionStatus;
 
-public class Mission {
+public class Mission implements Comparable<Mission>{
 
 	private String name;
 	private MissionStatus status;
@@ -19,6 +19,11 @@ public class Mission {
 
 	public MissionStatus getStatus() {
 		return status;
+	}
+
+	public int compareTo(Mission o) {
+		// TODO Auto-generated method stub
+		return this.name.compareTo(o.name);
 	}
 
 	
