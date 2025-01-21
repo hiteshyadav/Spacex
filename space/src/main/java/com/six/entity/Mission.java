@@ -5,6 +5,7 @@ import java.util.TreeSet;
 
 import com.six.constant.MissionStatus;
 import com.six.constant.RocketStatus;
+import com.six.constant.StringConstants;
 
 public class Mission implements Comparable<Mission> {
 
@@ -38,11 +39,12 @@ public class Mission implements Comparable<Mission> {
 	}
 
 	public void endMission() {
-		for(Rocket r1:rockets) {
+		for (Rocket r1 : rockets) {
 			r1.endMission();
 		}
-		rockets=new TreeSet<Rocket>();
+		rockets = new TreeSet<Rocket>();
 	}
+
 	void updateStatus() {
 		if (rockets.size() == 0) {
 			status = MissionStatus.Scheduled;
@@ -60,5 +62,18 @@ public class Mission implements Comparable<Mission> {
 			}
 
 		}
+	}
+
+	public String getSummary() {
+		
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(name + StringConstants.separator + status + "-Dragons: " + rockets.size());
+		sb.append(StringConstants.newLine);
+		for (Rocket r1 : rockets) {
+			sb.append(r1.getName() + StringConstants.separator + r1.getStatus());
+			sb.append(StringConstants.newLine);
+		}
+		return sb.toString();
 	}
 }

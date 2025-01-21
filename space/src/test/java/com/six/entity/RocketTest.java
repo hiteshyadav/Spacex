@@ -29,7 +29,7 @@ public class RocketTest {
 		Rocket r2 = new Rocket("BV");
 		int compRes = r1.compareTo(r2);
 
-		assertEquals(compRes > 0, true);
+		assertEquals(compRes < 0, true);
 	}
 
 	@Test

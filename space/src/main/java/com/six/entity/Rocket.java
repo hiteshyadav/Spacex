@@ -17,6 +17,10 @@ public class Rocket implements Comparable<Rocket> {
 		endMission = false;
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	public boolean isInRepair() {
 		return inRepair;
 	}
@@ -62,7 +66,8 @@ public class Rocket implements Comparable<Rocket> {
 	}
 
 	public int compareTo(Rocket other) {
-		return this.name.compareTo(other.name);
+		return other.name.compareTo(this.name);
+
 	}
 
 	public void updateRocketStatus() {
